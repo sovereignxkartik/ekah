@@ -1,6 +1,5 @@
 import Navigation from "@/components/Navigation";
 import Hero from "@/components/Hero";
-import CategoryCards from "@/components/CategoryCards";
 import WhoIsUsing from "@/components/WhoIsUsing";
 import TrustedCompanies from "@/components/TrustedCompanies";
 import ScrollingOpportunities from "@/components/ScrollingOpportunities";
@@ -128,7 +127,6 @@ const Index = () => {
     <div className="min-h-screen">
       <Navigation />
       <Hero />
-      <CategoryCards />
       <WhoIsUsing />
       <TrustedCompanies />
       <ScrollingOpportunities 
