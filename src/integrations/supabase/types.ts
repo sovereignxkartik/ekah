@@ -14,7 +14,146 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      applications: {
+        Row: {
+          additional_info: Json | null
+          applied_at: string | null
+          cover_letter: string | null
+          id: string
+          opportunity_id: string
+          status: string
+          updated_at: string | null
+          user_id: string
+        }
+        Insert: {
+          additional_info?: Json | null
+          applied_at?: string | null
+          cover_letter?: string | null
+          id?: string
+          opportunity_id: string
+          status?: string
+          updated_at?: string | null
+          user_id: string
+        }
+        Update: {
+          additional_info?: Json | null
+          applied_at?: string | null
+          cover_letter?: string | null
+          id?: string
+          opportunity_id?: string
+          status?: string
+          updated_at?: string | null
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "applications_opportunity_id_fkey"
+            columns: ["opportunity_id"]
+            isOneToOne: false
+            referencedRelation: "opportunities"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      opportunities: {
+        Row: {
+          company: string
+          created_at: string | null
+          deadline: string | null
+          description: string | null
+          duration: string | null
+          id: string
+          image_url: string | null
+          is_active: boolean | null
+          location: string | null
+          mode: string | null
+          requirements: string | null
+          stipend: string | null
+          title: string
+          type: string
+        }
+        Insert: {
+          company: string
+          created_at?: string | null
+          deadline?: string | null
+          description?: string | null
+          duration?: string | null
+          id?: string
+          image_url?: string | null
+          is_active?: boolean | null
+          location?: string | null
+          mode?: string | null
+          requirements?: string | null
+          stipend?: string | null
+          title: string
+          type: string
+        }
+        Update: {
+          company?: string
+          created_at?: string | null
+          deadline?: string | null
+          description?: string | null
+          duration?: string | null
+          id?: string
+          image_url?: string | null
+          is_active?: boolean | null
+          location?: string | null
+          mode?: string | null
+          requirements?: string | null
+          stipend?: string | null
+          title?: string
+          type?: string
+        }
+        Relationships: []
+      }
+      profiles: {
+        Row: {
+          avatar_url: string | null
+          bio: string | null
+          created_at: string | null
+          education: string | null
+          email: string | null
+          experience: string | null
+          full_name: string | null
+          id: string
+          location: string | null
+          phone: string | null
+          resume_url: string | null
+          skills: string[] | null
+          updated_at: string | null
+        }
+        Insert: {
+          avatar_url?: string | null
+          bio?: string | null
+          created_at?: string | null
+          education?: string | null
+          email?: string | null
+          experience?: string | null
+          full_name?: string | null
+          id: string
+          location?: string | null
+          phone?: string | null
+          resume_url?: string | null
+          skills?: string[] | null
+          updated_at?: string | null
+        }
+        Update: {
+          avatar_url?: string | null
+          bio?: string | null
+          created_at?: string | null
+          education?: string | null
+          email?: string | null
+          experience?: string | null
+          full_name?: string | null
+          id?: string
+          location?: string | null
+          phone?: string | null
+          resume_url?: string | null
+          skills?: string[] | null
+          updated_at?: string | null
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
