@@ -7,6 +7,7 @@ import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { useToast } from "@/hooks/use-toast";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { CheckCircle2, Mail } from "lucide-react";
 
 const Auth = () => {
   const navigate = useNavigate();
@@ -15,6 +16,8 @@ const Auth = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [fullName, setFullName] = useState("");
+  const [showConfirmation, setShowConfirmation] = useState(false);
+  const [confirmationEmail, setConfirmationEmail] = useState("");
 
   useEffect(() => {
     supabase.auth.getSession().then(({ data: { session } }) => {
@@ -36,15 +39,15 @@ const Auth = () => {
           data: {
             full_name: fullName,
           },
+          emailRedirectTo: `${window.location.origin}/`,
         },
       });
 
       if (error) throw error;
 
-      toast({
-        title: "Account created!",
-        description: "You can now log in with your credentials.",
-      });
+      // Show confirmation animation
+      setConfirmationEmail(email);
+      setShowConfirmation(true);
       
       setEmail("");
       setPassword("");
@@ -88,6 +91,55 @@ const Auth = () => {
       setIsLoading(false);
     }
   };
+
+  if (showConfirmation) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-background via-background to-primary/5 p-4">
+        <Card className="w-full max-w-md">
+          <CardContent className="pt-12 pb-8 text-center space-y-6">
+            <div className="flex justify-center">
+              <div className="relative">
+                <div className="absolute inset-0 bg-green-500/20 rounded-full blur-2xl animate-pulse" />
+                <CheckCircle2 className="h-20 w-20 text-green-500 animate-scale-in relative" />
+              </div>
+            </div>
+            
+            <div className="space-y-2 animate-fade-in">
+              <h2 className="text-2xl font-bold">Check Your Email!</h2>
+              <div className="flex items-center justify-center gap-2 text-muted-foreground">
+                <Mail className="h-4 w-4" />
+                <p className="text-sm">{confirmationEmail}</p>
+              </div>
+            </div>
+            
+            <div className="space-y-4 animate-fade-in">
+              <p className="text-muted-foreground">
+                We've sent you a verification link to confirm your account.
+                Please check your email and click the link to complete your registration.
+              </p>
+              
+              <div className="bg-primary/5 border border-primary/20 rounded-lg p-4 text-sm">
+                <p className="font-medium mb-2">What's next?</p>
+                <ol className="text-left text-muted-foreground space-y-1 list-decimal list-inside">
+                  <li>Check your inbox (and spam folder)</li>
+                  <li>Click the verification link</li>
+                  <li>Log in to start your journey</li>
+                </ol>
+              </div>
+            </div>
+            
+            <Button 
+              variant="outline" 
+              onClick={() => setShowConfirmation(false)}
+              className="w-full"
+            >
+              Back to Login
+            </Button>
+          </CardContent>
+        </Card>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-background via-background to-primary/5 p-4">
