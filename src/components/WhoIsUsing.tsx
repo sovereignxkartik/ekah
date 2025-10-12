@@ -1,6 +1,7 @@
 const users = [
   {
     title: "Students and Professionals",
+    description: "Discover Right Talent: Hire, Engage, and Brand Like Never Before!",
     color: "bg-gradient-to-br from-blue-400 to-blue-500",
     icon: "👨‍🎓",
   },
