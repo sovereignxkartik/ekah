@@ -14,9 +14,9 @@ const banners = [
     subtitle: "Case study competition brought to you by HDFC Life",
     headline: "Crack Challenges & Win Big",
     prize: "Cash Prize worth ₹1.5 lakh",
-    color: "bg-gradient-to-r from-pink-50 via-purple-50 to-pink-100",
-    textColor: "text-purple-900",
-    accentColor: "bg-red-500 hover:bg-red-600",
+    color: "bg-gradient-to-r from-secondary via-muted to-secondary",
+    textColor: "text-foreground",
+    accentColor: "bg-primary hover:bg-primary/90",
     features: ["Three qualifying rounds", "Grand finale with HDFC Life leadership", "Cash Prize worth ₹1.5 lakh"],
   },
   {
@@ -24,9 +24,9 @@ const banners = [
     subtitle: "Where young minds turn into Champions!",
     headline: "Recognition and prizes",
     prize: "MacBook Air, Cash prizes up to ₹5,00,000",
-    color: "bg-gradient-to-r from-purple-600 via-purple-700 to-purple-800",
-    textColor: "text-white",
-    accentColor: "bg-yellow-500 hover:bg-yellow-600",
+    color: "bg-gradient-to-r from-primary via-primary/90 to-primary/80",
+    textColor: "text-primary-foreground",
+    accentColor: "bg-accent hover:bg-accent/90",
     features: ["CV points & Certificate", "Participate on Unstop"],
   },
   {
@@ -34,9 +34,9 @@ const banners = [
     subtitle: "Build the future with cutting-edge technology",
     headline: "Code, Create, Win",
     prize: "₹10 lakh in prizes & internship opportunities",
-    color: "bg-gradient-to-r from-blue-600 via-cyan-600 to-blue-700",
-    textColor: "text-white",
-    accentColor: "bg-green-500 hover:bg-green-600",
+    color: "bg-card border border-border",
+    textColor: "text-foreground",
+    accentColor: "bg-primary hover:bg-primary/90",
     features: ["Open to all students", "Team collaboration allowed"],
   },
   {
@@ -44,9 +44,9 @@ const banners = [
     subtitle: "Innovate with Artificial Intelligence",
     headline: "Build Smart Solutions",
     prize: "₹5 lakh in prizes & mentorship",
-    color: "bg-gradient-to-r from-orange-500 via-red-500 to-pink-600",
-    textColor: "text-white",
-    accentColor: "bg-blue-500 hover:bg-blue-600",
+    color: "bg-gradient-to-r from-secondary to-muted",
+    textColor: "text-foreground",
+    accentColor: "bg-primary hover:bg-primary/90",
     features: ["48-hour virtual hackathon", "Industry mentors"],
   },
 ];
@@ -55,37 +55,37 @@ const categories = [
   {
     title: "Internships",
     subtitle: "Gain Practical Experience",
-    color: "bg-gradient-to-br from-green-400 to-emerald-500",
+    color: "bg-secondary border border-border",
     image: internshipImg,
   },
   {
     title: "Mentorships",
     subtitle: "Guidance From Top Mentors",
-    color: "bg-gradient-to-br from-orange-400 to-amber-500",
+    color: "bg-card border border-border",
     image: mentorshipImg,
   },
   {
     title: "Jobs",
     subtitle: "Explore Diverse Careers",
-    color: "bg-gradient-to-br from-blue-400 to-cyan-500",
+    color: "bg-muted border border-border",
     image: jobsImg,
   },
   {
     title: "Practice",
     subtitle: "Refine Skills Daily",
-    color: "bg-gradient-to-br from-purple-400 to-violet-500",
+    color: "bg-secondary border border-border",
     image: practiceImg,
   },
   {
     title: "Competitions",
     subtitle: "Battle For Excellence",
-    color: "bg-gradient-to-br from-yellow-400 to-orange-500",
+    color: "bg-card border border-border",
     image: competitionImg,
   },
   {
     title: "More",
     subtitle: "Explore Everything",
-    color: "bg-gradient-to-br from-pink-400 to-rose-500",
+    color: "bg-muted border border-border",
     image: moreImg,
   },
 ];
@@ -111,7 +111,7 @@ const Hero = () => {
                       <p className="text-xs font-medium mb-2 opacity-90 ${banner.textColor}">{banner.title}</p>
                       <h2 className={`text-base md:text-xl font-bold mb-2 ${banner.textColor}`}>{banner.headline}</h2>
                       <p className={`text-xs mb-3 opacity-80 ${banner.textColor}`}>{banner.subtitle}</p>
-                      <div className="inline-block bg-red-500 text-white text-xs px-3 py-1 rounded-full font-semibold mb-3">
+                      <div className="inline-block bg-primary text-primary-foreground text-xs px-3 py-1 rounded-full font-semibold mb-3">
                         {banner.prize}
                       </div>
                     </div>
@@ -149,11 +149,11 @@ const Hero = () => {
               Explore opportunities from across the globe to grow, showcase skills, gain CV points & get hired by your dream company.
             </p>
             
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 border border-primary/20 animate-fade-in" style={{ animationDelay: "0.2s" }}>
-              <div className="w-6 h-6 rounded-full bg-gradient-to-br from-primary to-accent flex items-center justify-center text-white text-xs font-bold">
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-secondary border border-border animate-fade-in" style={{ animationDelay: "0.2s" }}>
+              <div className="w-6 h-6 rounded-full bg-primary flex items-center justify-center text-primary-foreground text-xs font-bold">
                 🚀
               </div>
-              <p className="text-xs font-medium">Just Went CareerVerse Pro!</p>
+              <p className="text-xs font-medium">Just Went ekah Pro!</p>
             </div>
           </div>
           
@@ -166,8 +166,8 @@ const Hero = () => {
               >
                 <div className={`${category.color} rounded-xl p-4 h-24 md:h-28 relative overflow-hidden transition-all duration-300 hover:shadow-lg hover:scale-105`}>
                   <div className="relative z-10">
-                    <h3 className="text-sm font-bold text-white mb-0.5">{category.title}</h3>
-                    <p className="text-xs text-white/90 leading-tight">{category.subtitle}</p>
+                    <h3 className="text-sm font-bold text-foreground mb-0.5">{category.title}</h3>
+                    <p className="text-xs text-muted-foreground leading-tight">{category.subtitle}</p>
                   </div>
                   <img 
                     src={category.image} 
