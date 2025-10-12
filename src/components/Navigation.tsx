@@ -3,6 +3,7 @@ import { Input } from "@/components/ui/input";
 import { Search, Menu, User, Briefcase, Plus, LogOut } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
 import { useNavigate } from "react-router-dom";
+import logo from "@/assets/ekah-logo.png";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -27,11 +28,8 @@ const Navigation = () => {
       <div className="container mx-auto px-4 py-3">
         <div className="flex items-center justify-between gap-4">
           {/* Logo */}
-          <div className="flex items-center gap-2 flex-shrink-0">
-            <div className="w-10 h-10 rounded-full bg-gradient-to-br from-primary to-accent flex items-center justify-center text-white font-bold text-lg">
-              CV
-            </div>
-            <span className="text-xl font-bold hidden sm:block">CareerVerse</span>
+          <div className="flex items-center gap-3 flex-shrink-0">
+            <img src={logo} alt="ekah" className="h-8 w-auto" />
           </div>
           
           {/* Search - Desktop */}

@@ -1,4 +1,5 @@
 import { Github, Twitter, Linkedin, Mail } from "lucide-react";
+import logo from "@/assets/ekah-logo.png";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -8,9 +9,7 @@ const Footer = () => {
       <div className="container mx-auto px-4 py-12">
         <div className="grid md:grid-cols-4 gap-8 mb-8">
           <div className="space-y-4">
-            <h3 className="text-2xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-              CareerVerse
-            </h3>
+            <img src={logo} alt="ekah" className="h-10 w-auto" />
             <p className="text-muted-foreground text-sm">
               Your one-stop platform for jobs, internships, hackathons, and career growth.
             </p>
@@ -62,7 +61,7 @@ const Footer = () => {
         </div>
         
         <div className="pt-8 border-t border-border text-center text-sm text-muted-foreground">
-          <p>© {currentYear} CareerVerse. All rights reserved. Built with passion for students worldwide.</p>
+          <p>© {currentYear} ekah. All rights reserved. Built with passion for students worldwide.</p>
         </div>
       </div>
     </footer>
