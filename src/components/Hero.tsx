@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import { ArrowRight } from "lucide-react";
 import internshipImg from "@/assets/internship-card.jpg";
 import mentorshipImg from "@/assets/mentorship-card.jpg";
@@ -6,6 +7,33 @@ import jobsImg from "@/assets/jobs-card.jpg";
 import practiceImg from "@/assets/practice-card.jpg";
 import competitionImg from "@/assets/competition-card.jpg";
 import moreImg from "@/assets/more-card.jpg";
+
+const banners = [
+  {
+    title: "aspire 2.0",
+    subtitle: "Case study competition brought to you by HDFC Life",
+    headline: "Crack Challenges & Win Big",
+    prize: "Cash Prize worth ₹1.5 lakh",
+    color: "bg-gradient-to-r from-pink-100 to-purple-100",
+    textColor: "text-purple-900",
+  },
+  {
+    title: "Unstop National Olympiad",
+    subtitle: "Where young minds turn into Champions!",
+    headline: "Recognition and prizes",
+    prize: "MacBook Air, Cash prizes up to ₹5,00,000",
+    color: "bg-gradient-to-r from-purple-600 to-purple-800",
+    textColor: "text-white",
+  },
+  {
+    title: "Tech Innovation Challenge 2025",
+    subtitle: "Build the future with cutting-edge technology",
+    headline: "Code, Create, Win",
+    prize: "₹10 lakh in prizes & internship opportunities",
+    color: "bg-gradient-to-r from-blue-500 to-cyan-500",
+    textColor: "text-white",
+  },
+];
 
 const categories = [
   {
@@ -48,43 +76,70 @@ const categories = [
 
 const Hero = () => {
   return (
-    <section className="relative py-12 lg:py-20 overflow-hidden bg-background">
+    <section className="relative py-8 lg:py-12 overflow-hidden bg-background">
       <div className="container mx-auto px-4 relative z-10">
-        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+        {/* Banner Carousel */}
+        <Carousel className="w-full mb-8 animate-fade-in">
+          <CarouselContent>
+            {banners.map((banner, index) => (
+              <CarouselItem key={index}>
+                <div className={`${banner.color} rounded-xl p-6 md:p-8 ${banner.textColor} transition-all duration-300 hover:shadow-xl`}>
+                  <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+                    <div className="flex-1">
+                      <p className="text-xs md:text-sm font-medium mb-1">{banner.title}</p>
+                      <h2 className="text-lg md:text-2xl font-bold mb-2">{banner.headline}</h2>
+                      <p className="text-xs md:text-sm opacity-90 mb-2">{banner.subtitle}</p>
+                      <div className="inline-block bg-red-500 text-white text-xs px-3 py-1 rounded-full font-semibold">
+                        {banner.prize}
+                      </div>
+                    </div>
+                    <Button size="sm" className="bg-red-500 hover:bg-red-600 text-white text-xs px-4 py-2">
+                      Register on Unstop
+                    </Button>
+                  </div>
+                </div>
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+          <CarouselPrevious className="left-2" />
+          <CarouselNext className="right-2" />
+        </Carousel>
+
+        <div className="grid lg:grid-cols-2 gap-6 lg:gap-8 items-center">
           {/* Left side - Text content */}
           <div className="animate-fade-in-up">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-4">
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight mb-3">
               Unlock Your Career
             </h1>
             
-            <p className="text-lg text-muted-foreground mb-8 max-w-xl">
+            <p className="text-sm md:text-base text-muted-foreground mb-6 max-w-xl">
               Explore opportunities from across the globe to grow, showcase skills, gain CV points & get hired by your dream company.
             </p>
             
-            <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 animate-fade-in" style={{ animationDelay: "0.2s" }}>
-              <div className="w-8 h-8 rounded-full bg-gradient-to-br from-primary to-accent flex items-center justify-center text-white text-sm font-bold">
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 border border-primary/20 animate-fade-in" style={{ animationDelay: "0.2s" }}>
+              <div className="w-6 h-6 rounded-full bg-gradient-to-br from-primary to-accent flex items-center justify-center text-white text-xs font-bold">
                 🚀
               </div>
-              <p className="text-sm font-medium">Just Went CareerVerse Pro!</p>
+              <p className="text-xs font-medium">Just Went CareerVerse Pro!</p>
             </div>
           </div>
           
           {/* Right side - Category cards grid */}
-          <div className="grid grid-cols-2 gap-4 animate-fade-in-up" style={{ animationDelay: "0.1s" }}>
+          <div className="grid grid-cols-2 gap-3 animate-fade-in-up" style={{ animationDelay: "0.1s" }}>
             {categories.map((category, index) => (
               <div
                 key={index}
                 className="group cursor-pointer"
               >
-                <div className={`${category.color} rounded-2xl p-5 h-32 relative overflow-hidden transition-all duration-300 hover:shadow-xl hover:scale-105`}>
+                <div className={`${category.color} rounded-xl p-4 h-24 md:h-28 relative overflow-hidden transition-all duration-300 hover:shadow-lg hover:scale-105`}>
                   <div className="relative z-10">
-                    <h3 className="text-base font-bold text-white mb-1">{category.title}</h3>
+                    <h3 className="text-sm font-bold text-white mb-0.5">{category.title}</h3>
                     <p className="text-xs text-white/90 leading-tight">{category.subtitle}</p>
                   </div>
                   <img 
                     src={category.image} 
                     alt={category.title}
-                    className="absolute bottom-0 right-0 w-16 h-16 object-cover rounded-tl-2xl opacity-80 group-hover:scale-110 transition-transform"
+                    className="absolute bottom-0 right-0 w-12 h-12 md:w-14 md:h-14 object-cover rounded-tl-xl opacity-80 group-hover:scale-110 transition-transform duration-300"
                   />
                 </div>
               </div>

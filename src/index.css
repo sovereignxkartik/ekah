@@ -111,4 +111,26 @@ All colors MUST be HSL.
   body {
     @apply bg-background text-foreground;
   }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-bold;
+  }
+
+  p {
+    @apply leading-relaxed;
+  }
+}
+
+@layer utilities {
+  .text-compact {
+    @apply text-xs leading-tight;
+  }
+
+  .card-compact {
+    @apply p-4 rounded-xl;
+  }
+
+  .transition-smooth {
+    transition: var(--transition-smooth);
+  }
 }

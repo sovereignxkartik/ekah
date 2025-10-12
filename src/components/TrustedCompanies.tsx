@@ -30,6 +30,6 @@ const companies = [{
   color: "text-red-600"
 }];
 const TrustedCompanies = () => {
-  return;
+  return null;
 };
 export default TrustedCompanies;

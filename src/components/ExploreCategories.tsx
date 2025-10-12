@@ -35,35 +35,35 @@ const categories = [
 
 const ExploreCategories = () => {
   return (
-    <section className="py-16 bg-gradient-to-b from-muted/30 to-background">
+    <section className="py-12 bg-gradient-to-b from-muted/30 to-background">
       <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between mb-8">
+        <div className="flex items-center justify-between mb-6">
           <div>
-            <h2 className="text-4xl font-bold mb-2">
+            <h2 className="text-2xl md:text-3xl font-bold mb-1">
               Pick The <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">Right Opportunity!</span>
             </h2>
-            <p className="text-muted-foreground">Explore opportunities that best suits your skills and interests!</p>
+            <p className="text-xs md:text-sm text-muted-foreground">Explore opportunities that best suits your skills and interests!</p>
           </div>
-          <Button variant="link" className="hidden sm:flex">
+          <Button variant="link" className="hidden sm:flex text-sm">
             Explore all →
           </Button>
         </div>
         
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
           {categories.map((category, index) => (
             <div
               key={index}
               className="group cursor-pointer animate-fade-in-up"
               style={{ animationDelay: `${index * 0.1}s` }}
             >
-              <div className={`${category.color} rounded-2xl p-8 h-64 relative overflow-hidden transition-all duration-300 hover:shadow-2xl hover:scale-105`}>
+              <div className={`${category.color} rounded-xl p-5 h-40 relative overflow-hidden transition-all duration-300 hover:shadow-lg hover:scale-105`}>
                 <div className="relative z-10 h-full flex flex-col">
-                  <div className="text-5xl mb-4 group-hover:scale-110 transition-transform">{category.icon}</div>
-                  <h3 className="text-2xl font-bold text-white mb-2">{category.title}</h3>
-                  <p className="text-white/90">{category.description}</p>
+                  <div className="text-3xl mb-2 group-hover:scale-110 transition-transform duration-300">{category.icon}</div>
+                  <h3 className="text-base font-bold text-white mb-1">{category.title}</h3>
+                  <p className="text-xs text-white/90">{category.description}</p>
                 </div>
                 {/* Decorative element */}
-                <div className="absolute -bottom-10 -right-10 w-40 h-40 bg-white/10 rounded-full group-hover:scale-150 transition-transform duration-500" />
+                <div className="absolute -bottom-8 -right-8 w-24 h-24 bg-white/10 rounded-full group-hover:scale-150 transition-transform duration-500" />
               </div>
             </div>
           ))}
