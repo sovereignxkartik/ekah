@@ -1,7 +1,6 @@
 const users = [
   {
     title: "Students and Professionals",
-    description: "Unlock Your Potential: Compete, Build Resume, Grow and get Hired!",
     color: "bg-gradient-to-br from-blue-400 to-blue-500",
     icon: "👨‍🎓",
   },
