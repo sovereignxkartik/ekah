@@ -14,24 +14,40 @@ const banners = [
     subtitle: "Case study competition brought to you by HDFC Life",
     headline: "Crack Challenges & Win Big",
     prize: "Cash Prize worth ₹1.5 lakh",
-    color: "bg-gradient-to-r from-pink-100 to-purple-100",
+    color: "bg-gradient-to-r from-pink-50 via-purple-50 to-pink-100",
     textColor: "text-purple-900",
+    accentColor: "bg-red-500 hover:bg-red-600",
+    features: ["Three qualifying rounds", "Grand finale with HDFC Life leadership", "Cash Prize worth ₹1.5 lakh"],
   },
   {
     title: "Unstop National Olympiad",
     subtitle: "Where young minds turn into Champions!",
     headline: "Recognition and prizes",
     prize: "MacBook Air, Cash prizes up to ₹5,00,000",
-    color: "bg-gradient-to-r from-purple-600 to-purple-800",
+    color: "bg-gradient-to-r from-purple-600 via-purple-700 to-purple-800",
     textColor: "text-white",
+    accentColor: "bg-yellow-500 hover:bg-yellow-600",
+    features: ["CV points & Certificate", "Participate on Unstop"],
   },
   {
     title: "Tech Innovation Challenge 2025",
     subtitle: "Build the future with cutting-edge technology",
     headline: "Code, Create, Win",
     prize: "₹10 lakh in prizes & internship opportunities",
-    color: "bg-gradient-to-r from-blue-500 to-cyan-500",
+    color: "bg-gradient-to-r from-blue-600 via-cyan-600 to-blue-700",
     textColor: "text-white",
+    accentColor: "bg-green-500 hover:bg-green-600",
+    features: ["Open to all students", "Team collaboration allowed"],
+  },
+  {
+    title: "AI/ML Hackathon 2025",
+    subtitle: "Innovate with Artificial Intelligence",
+    headline: "Build Smart Solutions",
+    prize: "₹5 lakh in prizes & mentorship",
+    color: "bg-gradient-to-r from-orange-500 via-red-500 to-pink-600",
+    textColor: "text-white",
+    accentColor: "bg-blue-500 hover:bg-blue-600",
+    features: ["48-hour virtual hackathon", "Industry mentors"],
   },
 ];
 
@@ -78,31 +94,48 @@ const Hero = () => {
   return (
     <section className="relative py-8 lg:py-12 overflow-hidden bg-background">
       <div className="container mx-auto px-4 relative z-10">
-        {/* Banner Carousel */}
-        <Carousel className="w-full mb-8 animate-fade-in">
-          <CarouselContent>
+        {/* Banner Carousel - Shows 2 banners at once */}
+        <Carousel 
+          className="w-full mb-8 animate-fade-in"
+          opts={{
+            align: "start",
+            loop: true,
+          }}
+        >
+          <CarouselContent className="-ml-2 md:-ml-4">
             {banners.map((banner, index) => (
-              <CarouselItem key={index}>
-                <div className={`${banner.color} rounded-xl p-6 md:p-8 ${banner.textColor} transition-all duration-300 hover:shadow-xl`}>
-                  <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-                    <div className="flex-1">
-                      <p className="text-xs md:text-sm font-medium mb-1">{banner.title}</p>
-                      <h2 className="text-lg md:text-2xl font-bold mb-2">{banner.headline}</h2>
-                      <p className="text-xs md:text-sm opacity-90 mb-2">{banner.subtitle}</p>
-                      <div className="inline-block bg-red-500 text-white text-xs px-3 py-1 rounded-full font-semibold">
+              <CarouselItem key={index} className="pl-2 md:pl-4 basis-full md:basis-1/2">
+                <div className={`${banner.color} rounded-xl overflow-hidden transition-all duration-300 hover:shadow-xl h-full`}>
+                  <div className="p-5 md:p-6 flex flex-col justify-between h-full min-h-[180px]">
+                    <div>
+                      <p className="text-xs font-medium mb-2 opacity-90 ${banner.textColor}">{banner.title}</p>
+                      <h2 className={`text-base md:text-xl font-bold mb-2 ${banner.textColor}`}>{banner.headline}</h2>
+                      <p className={`text-xs mb-3 opacity-80 ${banner.textColor}`}>{banner.subtitle}</p>
+                      <div className="inline-block bg-red-500 text-white text-xs px-3 py-1 rounded-full font-semibold mb-3">
                         {banner.prize}
                       </div>
                     </div>
-                    <Button size="sm" className="bg-red-500 hover:bg-red-600 text-white text-xs px-4 py-2">
-                      Register on Unstop
-                    </Button>
+                    <div className="flex items-center justify-between mt-3">
+                      <div className="flex flex-wrap gap-2">
+                        {banner.features.slice(0, 2).map((feature, fIdx) => (
+                          <span key={fIdx} className={`text-xs ${banner.textColor} opacity-75 flex items-center gap-1`}>
+                            <span className="w-1 h-1 rounded-full bg-current"></span>
+                            {feature}
+                          </span>
+                        ))}
+                      </div>
+                      <Button size="sm" className={`${banner.accentColor} text-white text-xs px-4 py-2 shadow-md flex-shrink-0`}>
+                        Register
+                        <ArrowRight className="w-3 h-3 ml-1" />
+                      </Button>
+                    </div>
                   </div>
                 </div>
               </CarouselItem>
             ))}
           </CarouselContent>
-          <CarouselPrevious className="left-2" />
-          <CarouselNext className="right-2" />
+          <CarouselPrevious className="left-0 -translate-x-1/2" />
+          <CarouselNext className="right-0 translate-x-1/2" />
         </Carousel>
 
         <div className="grid lg:grid-cols-2 gap-6 lg:gap-8 items-center">
