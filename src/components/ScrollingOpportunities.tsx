@@ -1,6 +1,7 @@
 import { ArrowRight, Clock, Users, MapPin } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import { useNavigate } from "react-router-dom";
 
 interface Opportunity {
   title: string;
@@ -20,6 +21,8 @@ interface ScrollingOpportunitiesProps {
 }
 
 const ScrollingOpportunities = ({ title, subtitle, opportunities }: ScrollingOpportunitiesProps) => {
+  const navigate = useNavigate();
+  
   return (
     <section className="py-12 bg-background">
       <div className="container mx-auto px-4">
@@ -28,7 +31,11 @@ const ScrollingOpportunities = ({ title, subtitle, opportunities }: ScrollingOpp
             <h2 className="text-3xl font-bold mb-2">{title}</h2>
             {subtitle && <p className="text-muted-foreground">{subtitle}</p>}
           </div>
-          <Button variant="link" className="hidden sm:flex">
+          <Button 
+            variant="link" 
+            className="hidden sm:flex"
+            onClick={() => navigate("/internships")}
+          >
             View all <ArrowRight className="ml-2 h-4 w-4" />
           </Button>
         </div>
@@ -40,6 +47,7 @@ const ScrollingOpportunities = ({ title, subtitle, opportunities }: ScrollingOpp
               <Card
                 key={index}
                 className="flex-shrink-0 w-80 group hover:shadow-xl transition-all duration-300 hover:-translate-y-1 cursor-pointer snap-start"
+                onClick={() => navigate("/internships/1")}
               >
                 <div className="relative h-48 overflow-hidden rounded-t-xl">
                   <div className={`w-full h-full ${opp.image}`} />
@@ -79,7 +87,14 @@ const ScrollingOpportunities = ({ title, subtitle, opportunities }: ScrollingOpp
                     </div>
                   </div>
                   
-                  <Button variant="outline" className="w-full group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
+                  <Button 
+                    variant="outline" 
+                    className="w-full group-hover:bg-primary group-hover:text-primary-foreground transition-colors"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      navigate("/internships/1");
+                    }}
+                  >
                     Learn More
                     <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
                   </Button>
@@ -99,7 +114,11 @@ const ScrollingOpportunities = ({ title, subtitle, opportunities }: ScrollingOpp
           </div>
         </div>
         
-        <Button variant="link" className="sm:hidden w-full mt-4">
+        <Button 
+          variant="link" 
+          className="sm:hidden w-full mt-4"
+          onClick={() => navigate("/internships")}
+        >
           View all <ArrowRight className="ml-2 h-4 w-4" />
         </Button>
       </div>

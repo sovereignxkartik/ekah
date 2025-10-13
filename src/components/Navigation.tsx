@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Search, Menu, User, Briefcase, Plus, LogOut } from "lucide-react";
+import { Search, Menu, User, Briefcase, Plus, LogOut, X } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
 import { useNavigate } from "react-router-dom";
 import logo from "@/assets/ekah-logo.png";
@@ -13,15 +13,27 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { useState } from "react";
 
 const Navigation = () => {
   const { user, signOut } = useAuth();
   const navigate = useNavigate();
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const handleSignOut = async () => {
     await signOut();
     navigate("/");
   };
+
+  const menuItems = [
+    { label: "Internships", path: "/internships" },
+    { label: "Jobs", path: "#" },
+    { label: "Competitions", path: "#" },
+    { label: "Mentorships", path: "#" },
+    { label: "Practice", path: "#" },
+    { label: "More", path: "#" },
+  ];
 
   return (
     <nav className="sticky top-0 z-50 bg-background/95 backdrop-blur-md border-b border-border">
@@ -99,9 +111,42 @@ const Navigation = () => {
               </Button>
             )}
             
-            <Button variant="ghost" size="icon" className="lg:hidden">
-              <Menu className="h-5 w-5" />
-            </Button>
+            <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
+              <SheetTrigger asChild>
+                <Button variant="ghost" size="icon" className="lg:hidden">
+                  <Menu className="h-5 w-5" />
+                </Button>
+              </SheetTrigger>
+              <SheetContent side="right" className="w-[300px] sm:w-[400px] bg-background border-border">
+                <div className="flex flex-col gap-6 mt-8">
+                  <nav className="flex flex-col gap-4">
+                    {menuItems.map((item) => (
+                      <button
+                        key={item.label}
+                        onClick={() => {
+                          if (item.path !== "#") navigate(item.path);
+                          setMobileMenuOpen(false);
+                        }}
+                        className="text-left text-base font-medium hover:text-primary transition-colors py-2 px-4 rounded-lg hover:bg-muted"
+                      >
+                        {item.label}
+                      </button>
+                    ))}
+                  </nav>
+                  
+                  <div className="border-t border-border pt-4 space-y-3">
+                    <Button variant="outline" className="w-full justify-start">
+                      <Plus className="h-4 w-4 mr-2" />
+                      Host
+                    </Button>
+                    <Button variant="outline" className="w-full justify-start">
+                      <Briefcase className="h-4 w-4 mr-2" />
+                      For Business
+                    </Button>
+                  </div>
+                </div>
+              </SheetContent>
+            </Sheet>
           </div>
         </div>
         
