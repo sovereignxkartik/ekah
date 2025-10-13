@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import { ArrowRight } from "lucide-react";
@@ -57,6 +58,7 @@ const categories = [
     subtitle: "Gain Practical Experience",
     color: "bg-secondary border border-border",
     image: internshipImg,
+    link: "/internships",
   },
   {
     title: "Mentorships",
@@ -91,6 +93,8 @@ const categories = [
 ];
 
 const Hero = () => {
+  const navigate = useNavigate();
+  
   return (
     <section className="relative py-8 lg:py-12 overflow-hidden bg-background">
       <div className="container mx-auto px-4 relative z-10">
@@ -163,6 +167,7 @@ const Hero = () => {
               <div
                 key={index}
                 className="group cursor-pointer"
+                onClick={() => category.link && navigate(category.link)}
               >
                 <div className={`${category.color} rounded-xl p-4 h-24 md:h-28 relative overflow-hidden transition-all duration-300 hover:shadow-lg hover:scale-105`}>
                   <div className="relative z-10">

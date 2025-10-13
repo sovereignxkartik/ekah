@@ -45,7 +45,7 @@ const Navigation = () => {
           
           {/* Desktop Menu */}
           <div className="hidden lg:flex items-center gap-6">
-            <a href="#" className="text-sm font-medium hover:text-primary transition-colors">Internships</a>
+            <button onClick={() => navigate("/internships")} className="text-sm font-medium hover:text-primary transition-colors">Internships</button>
             <a href="#" className="text-sm font-medium hover:text-primary transition-colors">Jobs</a>
             <a href="#" className="text-sm font-medium hover:text-primary transition-colors">Competitions</a>
             <a href="#" className="text-sm font-medium hover:text-primary transition-colors">Mentorships</a>
