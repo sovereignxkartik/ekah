@@ -69,12 +69,12 @@ const Navigation = () => {
           <div className="hidden md:flex flex-1 max-w-xs">
             <Popover open={searchOpen} onOpenChange={setSearchOpen}>
               <PopoverTrigger asChild>
-                <div className="relative w-full cursor-pointer">
-                  <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground z-10" />
+                <button className="relative w-full text-left">
+                  <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground pointer-events-none" />
                   <div className="pl-10 pr-4 py-2 bg-muted/30 border border-muted rounded-md text-sm text-muted-foreground">
                     Search Opportunities
                   </div>
-                </div>
+                </button>
               </PopoverTrigger>
               <PopoverContent className="w-[400px] p-0 bg-background border-border" align="start">
                 <Command className="bg-background">
@@ -236,12 +236,12 @@ const Navigation = () => {
         <div className="md:hidden mt-3">
           <Popover open={searchOpen} onOpenChange={setSearchOpen}>
             <PopoverTrigger asChild>
-              <div className="relative cursor-pointer">
-                <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground z-10" />
+              <button className="relative w-full text-left">
+                <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground pointer-events-none" />
                 <div className="pl-10 pr-4 py-2 bg-muted/30 border border-muted rounded-md text-sm text-muted-foreground">
                   Search Opportunities
                 </div>
-              </div>
+              </button>
             </PopoverTrigger>
             <PopoverContent className="w-[calc(100vw-2rem)] p-0 bg-background border-border" align="start">
               <Command className="bg-background">
