@@ -16,13 +16,13 @@ import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { useState } from "react";
 import {
   Command,
+  CommandDialog,
   CommandEmpty,
   CommandGroup,
   CommandInput,
   CommandItem,
   CommandList,
 } from "@/components/ui/command";
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 
 const Navigation = () => {
@@ -67,39 +67,12 @@ const Navigation = () => {
           
           {/* Search - Desktop */}
           <div className="hidden md:flex flex-1 max-w-xs">
-            <Popover open={searchOpen} onOpenChange={setSearchOpen}>
-              <PopoverTrigger asChild>
-                <button className="relative w-full text-left">
-                  <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground pointer-events-none" />
-                  <div className="pl-10 pr-4 py-2 bg-muted/30 border border-muted rounded-md text-sm text-muted-foreground">
-                    Search Opportunities
-                  </div>
-                </button>
-              </PopoverTrigger>
-              <PopoverContent className="w-[400px] p-0 bg-background border-border" align="start">
-                <Command className="bg-background">
-                  <CommandInput placeholder="Search Opportunities..." className="border-0" />
-                  <CommandList>
-                    <CommandEmpty>No results found.</CommandEmpty>
-                    <CommandGroup heading="Categories">
-                      {searchCategories.map((category) => (
-                        <CommandItem
-                          key={category.label}
-                          onSelect={() => {
-                            navigate(category.path);
-                            setSearchOpen(false);
-                          }}
-                          className="cursor-pointer"
-                        >
-                          <span className="mr-2">{category.icon}</span>
-                          <span>{category.label}</span>
-                        </CommandItem>
-                      ))}
-                    </CommandGroup>
-                  </CommandList>
-                </Command>
-              </PopoverContent>
-            </Popover>
+            <button className="relative w-full text-left" onClick={() => setSearchOpen(true)}>
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground pointer-events-none" />
+              <div className="pl-10 pr-4 py-2 bg-muted/30 border border-muted rounded-md text-sm text-muted-foreground">
+                Search Opportunities
+              </div>
+            </button>
           </div>
           
           {/* Desktop Menu */}
@@ -234,40 +207,35 @@ const Navigation = () => {
         
         {/* Mobile Search */}
         <div className="md:hidden mt-3">
-          <Popover open={searchOpen} onOpenChange={setSearchOpen}>
-            <PopoverTrigger asChild>
-              <button className="relative w-full text-left">
-                <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground pointer-events-none" />
-                <div className="pl-10 pr-4 py-2 bg-muted/30 border border-muted rounded-md text-sm text-muted-foreground">
-                  Search Opportunities
-                </div>
-              </button>
-            </PopoverTrigger>
-            <PopoverContent className="w-[calc(100vw-2rem)] p-0 bg-background border-border" align="start">
-              <Command className="bg-background">
-                <CommandInput placeholder="Search Opportunities..." className="border-0" />
-                <CommandList>
-                  <CommandEmpty>No results found.</CommandEmpty>
-                  <CommandGroup heading="Categories">
-                    {searchCategories.map((category) => (
-                      <CommandItem
-                        key={category.label}
-                        onSelect={() => {
-                          navigate(category.path);
-                          setSearchOpen(false);
-                        }}
-                        className="cursor-pointer"
-                      >
-                        <span className="mr-2">{category.icon}</span>
-                        <span>{category.label}</span>
-                      </CommandItem>
-                    ))}
-                  </CommandGroup>
-                </CommandList>
-              </Command>
-            </PopoverContent>
-          </Popover>
+          <button className="relative w-full text-left" onClick={() => setSearchOpen(true)}>
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground pointer-events-none" />
+            <div className="pl-10 pr-4 py-2 bg-muted/30 border border-muted rounded-md text-sm text-muted-foreground">
+              Search Opportunities
+            </div>
+          </button>
         </div>
+
+        <CommandDialog open={searchOpen} onOpenChange={setSearchOpen}>
+          <CommandInput placeholder="Search Opportunities..." />
+          <CommandList>
+            <CommandEmpty>No results found.</CommandEmpty>
+            <CommandGroup heading="Categories">
+              {searchCategories.map((category) => (
+                <CommandItem
+                  key={category.label}
+                  onSelect={() => {
+                    navigate(category.path);
+                    setSearchOpen(false);
+                  }}
+                  className="cursor-pointer"
+                >
+                  <span className="mr-2">{category.icon}</span>
+                  <span>{category.label}</span>
+                </CommandItem>
+              ))}
+            </CommandGroup>
+          </CommandList>
+        </CommandDialog>
       </div>
     </nav>
   );
